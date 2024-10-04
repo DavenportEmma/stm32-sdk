@@ -7,6 +7,7 @@ import shutil
 
 def main(args):
     sdk_base = pathlib.Path(os.path.join(os.getcwd(), 'stm32-sdk')).as_posix()
+    workspace_base = pathlib.Path(os.getcwd()).as_posix()
 
     if args.clean:
         try:
@@ -18,6 +19,7 @@ def main(args):
         [
             "cmake",
             f"-DSDK_BASE={sdk_base}",
+            f"-DWORKSPACE_BASE={workspace_base}",
             f"-C {sdk_base}/cmake/preload.cmake",
             f"-DCMAKE_MODULE_PATH={sdk_base}/cmake",
             f"-DCMAKE_TOOLCHAIN_FILE={sdk_base}/cmake/toolchain.cmake",
