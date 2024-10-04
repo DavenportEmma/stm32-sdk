@@ -1,0 +1,2 @@
+source "platform/Kconfig"
+osource "${KCONFIG_APP_DIR}/Kconfig"
