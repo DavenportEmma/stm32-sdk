@@ -37,11 +37,36 @@ set (CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR})
 
 add_executable(${PROJECT_NAME})
 
+if(${REGEN})
+    execute_process(
+        COMMAND ${PYTHON_EXECUTABLE}
+        ${WORKSPACE_BASE}/config.py
+        -w ${WORKSPACE_BASE}
+        -c ${CMAKE_CURRENT_SOURCE_DIR}/proj.conf
+        -d ${CMAKE_BINARY_DIR}
+        -m
+        -a ${CMAKE_CURRENT_SOURCE_DIR}
+        RESULT_VARIABLE ret_config
+    )
+
+    if(${ret_config} EQUAL "1")
+        message(FATAL_ERROR ret_config)
+        return()
+    endif()
+endif()
+
+execute_process(
+    COMMAND ${PYTHON_EXECUTABLE}
+    ${SDK_BASE}/scripts/kconfig/read_config.py
+    -d ${CMAKE_BINARY_DIR}
+    OUTPUT_VARIABLE CONFIG   
+)
+
 target_include_directories(${PROJECT_NAME} PUBLIC
     ${SDK_BASE}/modules/CMSIS_5/CMSIS/Core/Include
     ${SDK_BASE}/modules/cmsis_device_f7/Include
-    ${SDK_BASE}/modules/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include
-    ${SDK_BASE}/include
+    ${SDK_BASE}/modules/gcc-arm-none-eabi/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include
+    ${SDK_BASE}/platform/include
 )
 
 set(CMSIS_SYSTEM ${SDK_BASE}/modules/cmsis_device_f7/Source/Templates/system_stm32f7xx.c)
@@ -50,12 +75,13 @@ set(CMSIS_STARTUP ${SDK_BASE}/modules/cmsis_device_f7/Source/Templates/gcc/start
 set(SOURCES
     ${CMSIS_SYSTEM}
     ${CMSIS_STARTUP}
+    ${DRIVER_SRC}
 )
 
 target_sources(${PROJECT_NAME} PUBLIC ${SOURCES})
 
 target_link_options(${PROJECT_NAME} PRIVATE
-    -T${SDK_BASE}/../platform/STM32F722ZETx_FLASH.ld
+    -T${WORKSPACE_BASE}/platform/STM32F722ZETx_FLASH.ld
     --specs=nosys.specs -DSTM32F722xx -g3
     -Wl,-Map=test.map-Wl,--gc-sections -static -Wl,--start-group -lc -lm -Wl,--end-group
 )
