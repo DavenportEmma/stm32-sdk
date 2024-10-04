@@ -1,0 +1,68 @@
+[
+    {
+        "name": "gcc-arm-none-eabi",
+        "path": "modules/gcc-arm-none-eabi",
+        "perOSInfo": {
+            "win32": {
+                "url": "https://developer.arm.com/-/media/Files/downloads/gnu-rm/10.3-2021.10/gcc-arm-none-eabi-10.3-2021.10-win32.zip?rev=8f4a92e2ec2040f89912f372a55d8cf3&hash=8A9EAF77EF1957B779C59EADDBF2DAC118170BBF"
+            }
+        }
+    },
+    {
+        "name": "ninja",
+        "path": "modules/ninja",
+        "perOSInfo": {
+            "win32": {
+                "url": "https://github.com/ninja-build/ninja/releases/download/v1.11.1/ninja-win.zip"
+            }
+        }
+    },
+    {
+        "name": "cmake-3.29.0-rc3",
+        "path": "modules/cmake-3.29.0-rc3",
+        "perOSInfo": {
+            "win32": {
+                "url": "https://github.com/Kitware/CMake/releases/download/v3.29.0-rc3/cmake-3.29.0-rc3-windows-x86_64.zip"
+            }
+        }
+    },
+    {
+        "name": "cmsis_device_f7",
+        "path": "modules/cmsis_device_f7",
+        "url": "https://github.com/STMicroelectronics/cmsis_device_f7.git",
+        "ref": "master"
+    },
+    {
+        "name": "CMSIS_5",
+        "path": "modules/CMSIS_5",
+        "url": "https://github.com/ARM-software/CMSIS_5.git",
+        "ref": "master"
+    },
+    {
+        "name": "openocd",
+        "path": "modules/openocd",
+        "perOSInfo": {
+            "win32": {
+                "url": "https://github.com/xpack-dev-tools/openocd-xpack/releases/download/v0.12.0-2/xpack-openocd-0.12.0-2-win32-x64.zip"
+            }
+        }
+    },
+    {
+        "name": "FreeRTOS",
+        "path": "modules/FreeRTOS",
+        "url": "https://github.com/FreeRTOS/FreeRTOS.git",
+        "ref": "main"
+    },
+    {
+        "name": "platform",
+        "path": "../platform",
+        "url": "git@github.com:DavenportEmma/stm32-platform.git",
+        "ref": "main"
+    },
+    {
+        "name": "examples",
+        "path": "../examples",
+        "url": "git@github.com:DavenportEmma/stm32-examples.git",
+        "ref": "main"
+    }
+]
