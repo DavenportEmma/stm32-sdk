@@ -68,6 +68,8 @@ foreach(item ${CONFIG})
     cmake_language(EVAL CODE "set (${item})")
 endforeach()
 
+include(${WORKSPACE_BASE}/platform/CMakeLists.txt)
+
 target_include_directories(${PROJECT_NAME} PUBLIC
     ${SDK_BASE}/modules/CMSIS_5/CMSIS/Core/Include
     ${SDK_BASE}/modules/cmsis_device_f7/Include
