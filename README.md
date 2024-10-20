@@ -26,6 +26,11 @@ Run the env script to set up your environment.
 
 `./scripts/env.ps1`
 
+## Toolchain
+
+The GCC ARM none eabi toolchain can be downloaded from [here](https://developer.arm.com/-/media/Files/downloads/gnu-rm/10.3-2021.10/gcc-arm-none-eabi-10.3-2021.10-win32.zip?rev=8f4a92e2ec2040f89912f372a55d8cf3&hash=8A9EAF77EF1957B779C59EADDBF2DAC118170BBF).
+Extract this to `modules/gcc-arm-none-eabi`.
+
 ## Building a project
 
 Run the build script to build a project.
