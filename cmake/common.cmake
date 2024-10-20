@@ -71,6 +71,7 @@ endforeach()
 include(${WORKSPACE_BASE}/platform/CMakeLists.txt)
 
 target_include_directories(${PROJECT_NAME} PUBLIC
+    ${CMAKE_BINARY_DIR}
     ${SDK_BASE}/modules/CMSIS_5/CMSIS/Core/Include
     ${SDK_BASE}/modules/cmsis_device_f7/Include
     ${SDK_BASE}/modules/gcc-arm-none-eabi/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include
