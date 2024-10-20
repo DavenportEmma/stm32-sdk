@@ -82,6 +82,7 @@ def main():
         download(entry)
 
     shutil.copyfile("./scripts/build.py", "../build.py")
+    shutil.copyfile("./scripts/kconfig/config.py", "../config.py")
     shutil.copyfile("./Kconfig", "../Kconfig")
 
 
