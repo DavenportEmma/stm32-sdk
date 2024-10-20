@@ -74,7 +74,7 @@ target_include_directories(${PROJECT_NAME} PUBLIC
     ${SDK_BASE}/modules/CMSIS_5/CMSIS/Core/Include
     ${SDK_BASE}/modules/cmsis_device_f7/Include
     ${SDK_BASE}/modules/gcc-arm-none-eabi/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include
-    ${SDK_BASE}/platform/include
+    ${WORKSPACE_BASE}/platform/include
 )
 
 set(CMSIS_SYSTEM ${SDK_BASE}/modules/cmsis_device_f7/Source/Templates/system_stm32f7xx.c)
