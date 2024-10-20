@@ -62,6 +62,12 @@ execute_process(
     OUTPUT_VARIABLE CONFIG   
 )
 
+# convert stdout string from the script into a list 
+foreach(item ${CONFIG})
+    # load kconfig symbols as cmake variables
+    cmake_language(EVAL CODE "set (${item})")
+endforeach()
+
 target_include_directories(${PROJECT_NAME} PUBLIC
     ${SDK_BASE}/modules/CMSIS_5/CMSIS/Core/Include
     ${SDK_BASE}/modules/cmsis_device_f7/Include
