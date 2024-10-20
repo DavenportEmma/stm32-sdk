@@ -15,17 +15,22 @@ def main(args):
         except:
             pass
 
+    command = [
+        "cmake",
+        f"-DSDK_BASE={sdk_base}",
+        f"-DWORKSPACE_BASE={workspace_base}",
+        f"-C {sdk_base}/cmake/preload.cmake",
+        f"-DCMAKE_MODULE_PATH={sdk_base}/cmake",
+        f"-DCMAKE_TOOLCHAIN_FILE={sdk_base}/cmake/toolchain.cmake",
+        f"-S {args.app_dir}",
+        f"-B {args.build_dir}",
+    ]
+
+    if args.clean:
+        command.append("-DREGEN=true")
+
     subprocess.run(
-        [
-            "cmake",
-            f"-DSDK_BASE={sdk_base}",
-            f"-DWORKSPACE_BASE={workspace_base}",
-            f"-C {sdk_base}/cmake/preload.cmake",
-            f"-DCMAKE_MODULE_PATH={sdk_base}/cmake",
-            f"-DCMAKE_TOOLCHAIN_FILE={sdk_base}/cmake/toolchain.cmake",
-            f"-S {args.app_dir}",
-            f"-B {args.build_dir}",
-        ]
+        command
     )
 
     subprocess.run(
