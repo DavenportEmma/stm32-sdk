@@ -1,13 +1,4 @@
-[
-    {
-        "name": "gcc-arm-none-eabi",
-        "path": "modules/gcc-arm-none-eabi",
-        "perOSInfo": {
-            "win32": {
-                "url": "https://developer.arm.com/-/media/Files/downloads/gnu-rm/10.3-2021.10/gcc-arm-none-eabi-10.3-2021.10-win32.zip?rev=8f4a92e2ec2040f89912f372a55d8cf3&hash=8A9EAF77EF1957B779C59EADDBF2DAC118170BBF"
-            }
-        }
-    },
+[ 
     {
         "name": "ninja",
         "path": "modules/ninja",
