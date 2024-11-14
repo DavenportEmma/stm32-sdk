@@ -1,2 +1,37 @@
 source "platform/Kconfig"
 osource "${KCONFIG_APP_DIR}/Kconfig"
+
+config FREERTOS
+    bool "Enable FreeRTOS"
+    default n
+
+menu "FreeRTOS Configuration"
+depends on FREERTOS
+    config FREERTOS_TASKS
+        bool "FreeRTOS Tasks"
+        default n
+        
+    config FREERTOS_CROUTINE
+        bool "FreeRTOS Croutine"
+        default n
+        
+    config FREERTOS_EVENT_GROUP
+        bool "FreeRTOS Event Group"
+        default n
+        
+    config FREERTOS_LIST
+        bool "FreeRTOS List"
+        default n
+        
+    config FREERTOS_QUEUE
+        bool "FreeRTOS Queue"
+        default n
+        
+    config FREERTOS_STREAM_BUFFER
+        bool "FreeRTOS Stream Buffer"
+        default n
+        
+    config FREERTOS_TIMERS
+        bool "FreeRTOS Timers"
+        default n
+endmenu
