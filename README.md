@@ -1,7 +1,8 @@
 # learn-stm32
 
 This is a repository I'm logging all of my work with my STM32F722ZE Nucleo
-board.
+board. It is very much a repository for sketches, older applications are not
+guaranteed to work as the codebase matures.
 
 ## Getting started
 
