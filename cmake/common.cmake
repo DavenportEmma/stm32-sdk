@@ -69,8 +69,10 @@ foreach(item ${CONFIG})
 endforeach()
 
 include(${WORKSPACE_BASE}/platform/CMakeLists.txt)
+include(${WORKSPACE_BASE}/CMakeLists.txt)
 
 target_include_directories(${PROJECT_NAME} PUBLIC
+    ${DRIVER_INC}
     ${CMAKE_BINARY_DIR}
     ${SDK_BASE}/modules/CMSIS_5/CMSIS/Core/Include
     ${SDK_BASE}/modules/cmsis_device_f7/Include
