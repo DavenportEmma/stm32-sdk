@@ -84,6 +84,7 @@ def main():
     shutil.copyfile("./scripts/build.py", "../build.py")
     shutil.copyfile("./scripts/kconfig/config.py", "../config.py")
     shutil.copyfile("./Kconfig", "../Kconfig")
+    shutil.copytree("./.vscode", "../.vscode", dirs_exist_ok=True)
 
 
 if __name__ == "__main__":

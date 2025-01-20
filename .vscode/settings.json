@@ -1,0 +1,13 @@
+{
+    "files.associations": {
+        "*.cmake": "makefile",
+        "stm32f722xx.h": "c"
+    },
+    "cmake.sourceDirectory": [
+        "${workspaceFolder}/stm32-sdk"
+    ],
+    "cmake.environment": {
+        "TOOLCHAIN_PATH":"${workspaceFolder}/stm32-sdk/modules/xpack-arm-none-eabi-gcc-14.2.1-1.1/xpack-arm-none-eabi-gcc-14.2.1-1.1/bin",
+        "NINJA_PATH":"${workspaceFolder}/stm32-sdk/modules/ninja"
+    }
+}

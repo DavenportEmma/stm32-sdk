@@ -1,0 +1,23 @@
+# function for parsing the .config, getting the symbols as CMake vars
+
+function(parse_config_file CONFIG_FILE)
+    file(READ "${CONFIG_FILE}" CONFIG_CONTENT)
+    string(REPLACE "\n" ";" CONFIG_LINES "${CONFIG_CONTENT}")
+
+    foreach(CONFIG_LINE ${CONFIG_LINES})
+        string(STRIP "${CONFIG_LINE}" CONFIG_LINE)
+        if(CONFIG_LINE MATCHES "^#")
+            continue()
+        endif()
+        if(CONFIG_LINE MATCHES "^(CONFIG_[A-Za-z0-9_]+)=(.*)$")
+            set(SYMBOL_NAME "${CMAKE_MATCH_1}")
+            set(SYMBOL_VALUE "${CMAKE_MATCH_2}")
+            if(SYMBOL_VALUE STREQUAL "y")
+                set(SYMBOL_VALUE "1")
+            elseif(SYMBOL_VALUE STREQUAL "n")
+                set(SYMBOL_VALUE "0")
+            endif()
+            set(${SYMBOL_NAME} ${SYMBOL_VALUE} PARENT_SCOPE)
+        endif()
+    endforeach()
+endfunction()
