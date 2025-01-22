@@ -34,4 +34,16 @@ depends on FREERTOS
     config FREERTOS_TIMERS
         bool "FreeRTOS Timers"
         default n
-endmenu
+endmenu # FreeRTPS Configuration
+
+menu "Sequencer Options"
+
+config TEMPO
+    int "default tempo"
+    default 140
+
+config PPQN
+    int "PPQN"
+    default 96
+
+endmenu # Sequencer Options
