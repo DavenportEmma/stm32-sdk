@@ -69,7 +69,6 @@ foreach(item ${CONFIG})
 endforeach()
 
 include(${WORKSPACE_BASE}/platform/CMakeLists.txt)
-include(${SDK_BASE}/CMakeLists.txt)
 
 target_include_directories(${PROJECT_NAME} PUBLIC
     ${DRIVER_INC}
