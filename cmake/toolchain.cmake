@@ -58,6 +58,7 @@ set(CMAKE_FIND_ROOT_PATH_MODE_PACKAGE ONLY)
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -DSTM32F722xx")
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -std=gnu11 -g3 -O0 -ggdb3")
 
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall")
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wl,-allow-multiple-definition")
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wimplicit-function-declaration")
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -nodefaultlibs")
