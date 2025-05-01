@@ -72,6 +72,10 @@ if(${CONFIG_PLATFORM} STREQUAL "stm32f722xx")
     set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -include stm32f722xx.h")
     set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -DSTM32F722xx")
 
+    target_include_directories(${PROJECT_NAME} PUBLIC
+        ${SDK_BASE}/modules/cmsis_device_f7/Include
+    )
+
     set(CMSIS_SYSTEM ${SDK_BASE}/modules/cmsis_device_f7/Source/Templates/system_stm32f7xx.c)
     set(CMSIS_STARTUP ${SDK_BASE}/modules/cmsis_device_f7/Source/Templates/gcc/startup_stm32f722xx.s)
     
@@ -79,6 +83,23 @@ if(${CONFIG_PLATFORM} STREQUAL "stm32f722xx")
         -T${WORKSPACE_BASE}/platform/STM32F722ZETx_FLASH.ld
         -DSTM32F722xx
     )
+
+elseif(${CONFIG_PLATFORM} STREQUAL "stm32f303x8")
+    set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -include stm32f303x8.h")
+    set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -DSTM32F303x8")
+    
+    target_include_directories(${PROJECT_NAME} PUBLIC
+        ${SDK_BASE}/modules/cmsis_device_f3/Include
+    )
+
+    set(CMSIS_SYSTEM ${SDK_BASE}/modules/cmsis_device_f3/Source/Templates/system_stm32f3xx.c)
+    set(CMSIS_STARTUP ${SDK_BASE}/modules/cmsis_device_f3/Source/Templates/gcc/startup_stm32f303x8.s)
+
+    target_link_options(${PROJECT_NAME} PRIVATE 
+        -T${WORKSPACE_BASE}/platform/STM32F303K8Tx_FLASH.ld
+        -DSTM32F303x8
+    )
+
 endif()
 
 include(${WORKSPACE_BASE}/platform/CMakeLists.txt)
@@ -87,7 +108,7 @@ target_include_directories(${PROJECT_NAME} PUBLIC
     ${DRIVER_INC}
     ${CMAKE_BINARY_DIR}
     ${SDK_BASE}/modules/CMSIS_5/CMSIS/Core/Include
-    ${SDK_BASE}/modules/cmsis_device_f7/Include
+
     ${SDK_BASE}/modules/gcc-arm-none-eabi/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include
     ${WORKSPACE_BASE}/platform/include
 )
