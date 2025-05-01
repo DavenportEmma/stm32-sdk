@@ -7,8 +7,8 @@
             "program": "${input:elfPath}",
             "cwd": "${workspaceFolder}",
             "MIMode": "gdb",
-            "miDebuggerPath": "${workspaceFolder}/modules/gcc-arm-none-eabi-10.3-2021.10/bin/arm-none-eabi-gdb.exe",
-            "debugServerPath": "${workspaceFolder}/modules/openocd/xpack-openocd-0.12.0-2/bin/openocd.exe",
+            "miDebuggerPath": "${workspaceFolder}/stm32-sdk/modules/gcc-arm-none-eabi/gcc-arm-none-eabi-10.3-2021.10/bin/arm-none-eabi-gdb.exe",
+            "debugServerPath": "${workspaceFolder}/stm32-sdk/modules/openocd/xpack-openocd-0.12.0-2/bin/openocd.exe",
             "miDebuggerArgs": "-se ${input:elfPath}",
             "debugServerArgs": "--file board/st_nucleo_f7.cfg --file interface/stlink.cfg",
             "filterStderr": true,
@@ -19,7 +19,31 @@
                 {"text": "target remote localhost:3333"},
                 {"text": "monitor reset halt"},
                 {"text": "load"},
-                {"text": "monitor reset halt"}
+                {"text": "monitor reset halt"},
+                {"text": "set output-radix 16"}
+            ]
+        },
+        {
+            "name": "debug STM32 Nucleo F303K8",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${input:elfPath}",
+            "cwd": "${workspaceFolder}",
+            "MIMode": "gdb",
+            "miDebuggerPath": "${workspaceFolder}/stm32-sdk/modules/gcc-arm-none-eabi/gcc-arm-none-eabi-10.3-2021.10/bin/arm-none-eabi-gdb.exe",
+            "debugServerPath": "${workspaceFolder}/stm32-sdk/modules/openocd/xpack-openocd-0.12.0-2/bin/openocd.exe",
+            "miDebuggerArgs": "-se ${input:elfPath}",
+            "debugServerArgs": "--file board/st_nucleo_f3.cfg --file interface/stlink.cfg",
+            "filterStderr": true,
+            "serverStarted": "Info : Listening on port 3333 for gdb connections",
+            "serverLaunchTimeout": 10000,
+            "launchCompleteCommand": "None",
+            "setupCommands": [
+                {"text": "target remote localhost:3333"},
+                {"text": "monitor reset halt"},
+                {"text": "load"},
+                {"text": "monitor reset halt"},
+                {"text": "set output-radix 16"}
             ]
         }
     ],
