@@ -68,6 +68,19 @@ foreach(item ${CONFIG})
     cmake_language(EVAL CODE "set (${item})")
 endforeach()
 
+if(${CONFIG_PLATFORM} STREQUAL "stm32f722xx")
+    set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -include stm32f722xx.h")
+    set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -DSTM32F722xx")
+
+    set(CMSIS_SYSTEM ${SDK_BASE}/modules/cmsis_device_f7/Source/Templates/system_stm32f7xx.c)
+    set(CMSIS_STARTUP ${SDK_BASE}/modules/cmsis_device_f7/Source/Templates/gcc/startup_stm32f722xx.s)
+    
+    target_link_options(${PROJECT_NAME} PRIVATE 
+        -T${WORKSPACE_BASE}/platform/STM32F722ZETx_FLASH.ld
+        -DSTM32F722xx
+    )
+endif()
+
 include(${WORKSPACE_BASE}/platform/CMakeLists.txt)
 
 target_include_directories(${PROJECT_NAME} PUBLIC
@@ -79,9 +92,6 @@ target_include_directories(${PROJECT_NAME} PUBLIC
     ${WORKSPACE_BASE}/platform/include
 )
 
-set(CMSIS_SYSTEM ${SDK_BASE}/modules/cmsis_device_f7/Source/Templates/system_stm32f7xx.c)
-set(CMSIS_STARTUP ${SDK_BASE}/modules/cmsis_device_f7/Source/Templates/gcc/startup_stm32f722xx.s)
-
 set(SOURCES
     ${CMSIS_SYSTEM}
     ${CMSIS_STARTUP}
@@ -91,8 +101,7 @@ set(SOURCES
 target_sources(${PROJECT_NAME} PUBLIC ${SOURCES})
 
 target_link_options(${PROJECT_NAME} PRIVATE
-    -T${WORKSPACE_BASE}/platform/STM32F722ZETx_FLASH.ld
-    --specs=nosys.specs -DSTM32F722xx -g3
+    --specs=nosys.specs -g3
     -Wl,-Map=test.map-Wl,--gc-sections -static -Wl,--start-group -lc -lm -Wl,--end-group
 )
 
