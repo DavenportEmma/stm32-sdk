@@ -124,6 +124,7 @@ target_sources(${PROJECT_NAME} PUBLIC ${SOURCES})
 target_link_options(${PROJECT_NAME} PRIVATE
     --specs=nosys.specs -g3
     -Wl,-Map=test.map-Wl,--gc-sections -static -Wl,--start-group -lc -lm -Wl,--end-group
+    -Xlinker -Map=${PROJECT_NAME}.map
 )
 
 target_link_libraries(${PROJECT_NAME} m)
